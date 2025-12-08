@@ -1,0 +1,60 @@
+C:\Users\bvidh\PycharmProjects\tech_assignment-main\tech_assignment-main\.venv\Scripts\python.exe C:\Users\bvidh\PycharmProjects\tech_assignment-main\tech_assignment-main\main_v7.py
+2025-12-08 21:00:05,861 - __main__ - INFO - Deepgram STT opened
+2025-12-08 21:00:06,371 - __main__ - INFO - Deepgram STT connected
+2025-12-08 21:00:06,371 - __main__ - INFO - Voice assistant running. Ctrl+C to stop.
+2025-12-08 21:00:06,484 - __main__ - INFO - Microphone started. Speak now...
+2025-12-08 21:00:12,307 - __main__ - INFO - Processing with OpenAI: Hey. Do you Hey. Do you understand? Hey. Do you understand?
+2025-12-08 21:00:13,327 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-08 21:00:13,559 - __main__ - INFO - OpenAI produced thought enqueued for TTS
+2025-12-08 21:00:13,559 - __main__ - INFO - Agent says: Yes, I understand! How can I assist you today?
+2025-12-08 21:00:15,270 - __main__ - INFO - TTS connection opened
+2025-12-08 21:00:24,404 - __main__ - INFO - Audio playback completed (or interrupted)
+2025-12-08 21:00:25,515 - __main__ - INFO - TTS connection closed
+2025-12-08 21:00:36,463 - __main__ - INFO - Processing with OpenAI: I am going to I am going to test how I am going to test how you handle pause between pause between the I speak. I speak. I will I was thinking I was thinking maybe the system
+2025-12-08 21:00:37,743 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-08 21:00:38,439 - __main__ - INFO - OpenAI produced thought enqueued for TTS
+2025-12-08 21:00:38,439 - __main__ - INFO - Agent says: It seems like you're testing how the system responds to pauses. I'm here to assist you! If you have specific questions or need help with something, feel free to let me know.
+2025-12-08 21:00:39,760 - __main__ - INFO - TTS connection opened
+2025-12-08 21:00:52,545 - __main__ - INFO - Audio playback completed (or interrupted)
+2025-12-08 21:00:54,670 - __main__ - INFO - Processing with OpenAI: I was thinking maybe the system should only should only finalize the transcript when the pauses long pause is long enough Not not just every time, Not just every time I take a breath because real because real speech does because real speech doesn't follow perfect. Timing. Do you Do you understand that?
+2025-12-08 21:00:54,670 - __main__ - INFO - TTS connection closed
+2025-12-08 21:00:55,312 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-08 21:00:56,327 - __main__ - INFO - OpenAI produced thought enqueued for TTS
+2025-12-08 21:00:56,327 - __main__ - INFO - Agent says: Yes, I understand what you're saying. You're suggesting that the system should only finalize the transcript after longer pauses, rather than after every short pause or breath. This approach would better reflect natural speech patterns. Do you have any specific criteria in mind for what constitutes a "long pause"?
+2025-12-08 21:00:57,502 - __main__ - INFO - TTS connection opened
+2025-12-08 21:01:18,105 - __main__ - INFO - Audio playback completed (or interrupted)
+2025-12-08 21:01:18,670 - __main__ - INFO - TTS connection closed
+2025-12-08 21:01:31,463 - __main__ - INFO - Processing with OpenAI: So So what do you So what do you consider as best and practices? And apart from practices apart from stop words because stop because stop words are not natural. Thing. Right?
+2025-12-08 21:01:32,004 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-08 21:01:35,347 - __main__ - INFO - OpenAI produced thought enqueued for TTS
+2025-12-08 21:01:35,348 - __main__ - INFO - Agent says: It sounds like you're asking about best practices in communication, particularly in voice interaction, while also considering the role of stop words. Here are some key points to consider:
+
+1. **Clarity and Conciseness**: Strive to be clear and to the point. Avoid unnecessary jargon or complex language that might confuse the listener.
+
+2. **Active Listening**: Engage with the speaker by acknowledging their points and responding appropriately. This builds rapport and improves understanding.
+
+3. **Natural Language**: Use conversational language that feels natural. This includes using some stop words, as they help mimic the flow of natural speech.
+
+4. **Context Awareness**: Tailor your responses based on the context of the conversation. This helps ensure that your replies are relevant
+2025-12-08 21:01:36,784 - __main__ - INFO - TTS connection opened
+2025-12-08 21:02:13,314 - __main__ - INFO - Audio playback completed (or interrupted)
+2025-12-08 21:02:14,258 - __main__ - INFO - TTS connection closed
+2025-12-08 21:02:22,729 - __main__ - INFO - Processing with OpenAI: Well, thanks for Well, thanks for the point. Well, thanks for the point, or, I must Well, thanks for the point, Herb. I'm asking about a Well, thanks for the pointer. I'm asking about a conversational
+2025-12-08 21:02:23,534 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-08 21:02:24,225 - __main__ - INFO - OpenAI produced thought enqueued for TTS
+2025-12-08 21:02:24,225 - __main__ - INFO - Agent says: It seems like you might be looking for guidance on conversational topics or perhaps how to improve your conversational skills. Could you clarify what specific aspect of conversation you need help with?
+2025-12-08 21:02:25,323 - __main__ - INFO - TTS connection opened
+2025-12-08 21:02:35,038 - __main__ - INFO - Processing with OpenAI: Well, thanks for the pointer. I'm asking about a conversational AI a conversational AI how it should hand how it should handle pauses how it should handle pauses between the between the sentences rather between the sentences rather than relying on between the sentences rather than relying on stop words.
+2025-12-08 21:02:35,038 - __main__ - INFO - TTS connection closed
+2025-12-08 21:02:35,635 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-08 21:02:38,970 - __main__ - INFO - OpenAI produced thought enqueued for TTS
+2025-12-08 21:02:38,970 - __main__ - INFO - Agent says: When designing a conversational AI to handle pauses effectively, it's important to consider the natural rhythm of human speech. Here are some strategies it can employ:
+
+1. **Natural Pauses**: Acknowledge that pauses can be a natural part of conversation. The AI should be programmed to recognize and allow for pauses that occur between thoughts or sentences, giving users time to process information.
+
+2. **Context Awareness**: The AI should be aware of the context. For example, if the user asks a complex question, a longer pause might be appropriate before the AI responds, indicating it is thinking or processing the information.
+
+3. **Turn-Taking**: Implement turn-taking cues where the AI indicates it is ready for the user to respond, perhaps by using
+2025-12-08 21:02:42,298 - __main__ - INFO - TTS connection opened
+2025-12-08 21:03:30,095 - __main__ - INFO - Audio playback completed (or interrupted)
+2025-12-08 21:03:34,252 - __main__ - INFO - TTS connection closed
