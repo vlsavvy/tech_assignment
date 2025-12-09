@@ -1,7 +1,4 @@
-Here’s an expert-level review of the changes and fixes you applied in your updated code compared to the original:
-
----
-
+## Note on the fixes done, limitations and future plans.
 ### **1. Mode handling improvements**
 
 * Original code had **no formal mode system**; it always processed whatever was in the transcript.
@@ -26,7 +23,7 @@ Here’s an expert-level review of the changes and fixes you applied in your upd
   * `buffer_flush_loop()` for fallback flushing when user pauses or buffer hits a word/time limit.
 
 ✅ **Benefit:** Avoids multiple small OpenAI calls, reduces unnecessary API usage, and handles streaming naturally. Makes “manual” mode behavior explicit.
-⚠️ **Manual mode still flagged** — potential queue buildup if user speaks continuously.
+⚠️ **Observation / Limitation:** In long mode, the agent may **process and speak partial input earlier than the full buffer**, which can lead to repeated input being sent to OpenAI. This is expected behavior in the current v10 implementation.
 
 ---
 
@@ -36,6 +33,7 @@ Here’s an expert-level review of the changes and fixes you applied in your upd
 
   * Race conditions.
   * `[Errno -9983] Stream is stopped` or `[Errno -9988] Stream closed`.
+
 * Updated code:
 
   * Introduces a **single `playback_worker` thread** owning the PyAudio stream.
@@ -79,6 +77,7 @@ Here’s an expert-level review of the changes and fixes you applied in your upd
   * Prevents duplicate OpenAI calls.
 
 ✅ **Benefit:** More accurate, avoids repeated processing.
+⚠️ **Observation:** Even with long mode, early `speech_final` triggers may cause **partial repeats** in OpenAI input.
 
 ---
 
@@ -134,24 +133,45 @@ Here’s an expert-level review of the changes and fixes you applied in your upd
 | OpenAI + TTS       | Coupled, synchronous                                      | Queued `thoughts_queue` → `tts_worker` | Decoupled, async-safe          |
 | Interrupt handling | None                                                      | Stop TTS on keywords                   | Responsive assistant           |
 | Logging            | Minimal                                                   | Agent output + detailed errors         | Easier debugging               |
+| Long-mode behavior | Partial repeats due to early flushes                      | Observation logged, dedup can improve  | Awareness for repeated input   |
 
 ---
 
-**Bottom line:**
+### **Bottom line**
 
-Your changes are **robust and production-grade**. The biggest wins are:
+Why the changes are **robust and production-grade**. The biggest wins are:
 
 1. **TTS queue with playback worker** — removes `[Errno -9983/-9988]` errors.
 2. **Buffered STT + flush logic** — better OpenAI usage, less noise.
 3. **Explicit mode and interrupt handling** — more user control and safety.
-
-**Note for interview:**
-You can safely say:
-
-> “I refactored the code to fix TTS playback race conditions, added speech buffering with flush logic to reduce unnecessary OpenAI calls, implemented explicit mode switching, and handled interrupts gracefully. Manual mode still has potential queue issues if audio floods, but all core issues from the original code are addressed.”
+4. **Observation:** In long mode, the assistant may send partial input early, causing repeated input to OpenAI.
 
 ---
 
-If you want, I can **draw a simple diagram showing STT → buffer → OpenAI → TTS pipeline** for your interview to visually highlight these fixes. It usually impresses architects.
+**Overview of fix:**
 
-Do you want me to do that?
+> “I refactored the code to fix TTS playback race conditions, added speech buffering with flush logic to reduce unnecessary OpenAI calls, implemented explicit mode switching, and handled interrupts gracefully. In long mode, the agent may process partial input early, which can cause repeated OpenAI calls; this is expected in v10. All core issues from the original code are addressed.”
+
+#### Known limitation: Agent hears itself
+
+* When the system audio (TTS) is played on speakers, the microphone may pick it up.
+
+* This can lead to the agent processing its own speech as input.
+
+* Current workaround: Use headphones to isolate the microphone from the speaker output.
+
+* Potential future fix: Implement echo cancellation or a software-level loopback filter to prevent the STT pipeline from capturing TTS output.
+
+* ✅ Benefit: Users are aware of setup requirements and can avoid unintentional repeated input.
+
+#### Known limitation: Deepgram interim results
+
+* Current implementation follows Deepgram best practices.
+
+* Interim results are set to True to allow near-real-time streaming.
+
+* Side effect: Some sentences may be repeated in the output because interim fragments are occasionally processed before finalization.
+
+* Performing aggressive deduplication at this stage causes regressions in TTS timing and streaming behavior.
+
+* ⚠️ Future scope: Analyze and scope a robust dedupe mechanism that preserves low-latency playback while avoiding repeated sentences.
